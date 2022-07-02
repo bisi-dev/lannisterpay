@@ -6,6 +6,10 @@
   "repository": "https://github.com/bisi-dev/lannisterpay.git",
   "author": "Ayodeji Olabisi <yinka.olabisi15@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
+    "start": "node src/server.js"
+  },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "celebrate": "^15.0.1",
