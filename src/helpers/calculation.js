@@ -1,5 +1,7 @@
 const splitResponse = (transactionDTO) => {
   const { ID, Amount, SplitInfo } = transactionDTO
+
+  //RULE 1: Initial Balance
   let finalBalance = Number(Amount)
   let totalRatio = 0
 
@@ -24,11 +26,13 @@ const splitResponse = (transactionDTO) => {
     }
   })
 
+  //RULE 2: Arrange in order of precedence for Split Type
   const allSplitTypes = [].concat(flatSplitTypes, percentageSplitTypes, ratioSplitTypes)
 
   const finalSplitBreakDown = []
   let ratioBalance
 
+  //Calculation of Split amount for each object in arranged SplitInfo array
   for (let i = 0; i < allSplitTypes.length; i++) {
     const currentSplitInfo = allSplitTypes[i]
     const resObj = {}
@@ -54,6 +58,7 @@ const splitResponse = (transactionDTO) => {
     }
   }
 
+  //JSON response to satisfy requirement 2
   return {
     ID,
     Balance: finalBalance,
