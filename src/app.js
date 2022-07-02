@@ -3,6 +3,7 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import splitResponse from './helpers/calculation'
 import { errorResponse, successResponse } from './helpers/response'
 
 const app = express()
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/split-payments/compute', (req, res) => {
-  const result = req.body
+  const result = splitResponse(req.body)
   return successResponse(res, result)
 })
 
