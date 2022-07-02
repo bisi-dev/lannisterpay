@@ -5,6 +5,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import splitResponse from './helpers/calculation'
 import { errorResponse, successResponse } from './helpers/response'
+import { validateTransactionObject } from './helpers/validation'
 
 const app = express()
 
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/split-payments/compute', (req, res) => {
+app.post('/split-payments/compute', validateTransactionObject(), async (req, res) => {
   const result = splitResponse(req.body)
   return successResponse(res, result)
 })
